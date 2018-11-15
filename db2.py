@@ -5,9 +5,9 @@ _users = {
         'workplace': 'UiB'
     },
     'igor': {
-        'name': 'igor Ok',
-        'job_title': 'Phd Candidate',
-        'workplace': 'UiB'
+        'name': 'igor Ot',
+        'job_title': 'Student',
+        'workplace': 'HSE'
     }
 }
 
