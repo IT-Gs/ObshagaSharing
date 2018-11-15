@@ -1,9 +1,7 @@
 from flask import Flask
 from flask import render_template
 import db
-
 import db2
-
 app = Flask(__name__)
 
 @app.route("/")
@@ -45,9 +43,9 @@ def add_request():
 def publish_request():
   return "Congratulations! You publish request! :)"
 
-@app.route('/user/<username>')
-def show_user_profile(username):
+@app.route('/userpage/<username>')
+def userpage(username):
   user_data = db2.get_user(username)
-  return render_template('user.html'), user=user_data
+  return render_template('userpage.html'), user=user_data
 
 app.run(port=5000)
