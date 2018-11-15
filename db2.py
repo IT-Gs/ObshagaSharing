@@ -1,9 +1,9 @@
-users = {
+_users = {
     'paul': {
         'name': 'Pavel Ok',
         'job_title': 'Phd Candidate',
         'workplace': 'UiB'
-    }
+    },
     'igor': {
         'name': 'igor Ok',
         'job_title': 'Phd Candidate',
@@ -11,5 +11,5 @@ users = {
     }
 }
 
-def get_user(request.name):
-        return _user.get(username)
+def get_user(username):
+        return _users.get(username)
