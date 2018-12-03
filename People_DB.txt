@@ -1,0 +1,124 @@
+users = [
+
+    {
+         'login': 'paul',
+         'name': 'Pavel Novikov',
+         'course': '5th course',
+         'workplace': 'HSE'
+    },
+    {
+        'login': 'vasya',
+        'name': 'Vasiliy Dymin',
+        'course': '2d course',
+        'workplace': 'HSE'
+    },
+    {
+        'login': 'dasha',
+        'name': 'Daria Mickhailova',
+        'course': '3d course',
+        'workplace': 'HSE'
+    },
+    {
+        'login': 'anton',
+        'name': 'Anton Smirnov',
+        'course': '2d course',
+        'workplace': 'HSE'
+    },
+    {
+        'login': 'masha',
+        'name': 'Maria Troyekurova',
+        'course': '2d course',
+        'workplace': 'HSE'
+    },
+    {
+        'login': 'nika',
+        'name': 'Nika Krasnova',
+        'course': '1st course',
+        'workplace': 'HSE'
+    },
+    {
+        'login': 'igor',
+        'name': 'Igor Tichomirov',
+        'course': '1st course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'anna',
+        'name': 'Anna Dmitrieva',
+        'course': '2d course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'ivan',
+        'name': 'Ivan Titov',
+        'course': '4th course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'rita',
+        'name': 'Margarita Ulyanova',
+        'course': '4th course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'mimi',
+        'name': 'Marina Ulyanova',
+        'course': '5th course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'ara',
+        'name': 'Arkadiy Kulikov',
+        'course': '2d course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'fedya',
+        'name': 'Fedor Murin',
+        'course': '1st course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'liza',
+        'name': 'Elizaveta Garina',
+        'course': '2d course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'lisa',
+        'name': 'Alisa Mirova',
+        'course': '3th course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'alex',
+        'name': 'Aleksey Smirnov',
+        'course': '2d course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'inna',
+        'name': 'Inna Nemirovskaya',
+        'course': '3th course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'kolyan',
+        'name': 'Nikolai Fokin',
+        'course': '1st course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'olya',
+        'name': 'Olga Dudina',
+        'course': '3th course',
+        'workplace': 'HSE'
+    },
+	{
+        'login': 'kris',
+        'name': 'Kristina Zackharova',
+        'course': '4th course',
+        'workplace': 'HSE'
+    }
+
+]
