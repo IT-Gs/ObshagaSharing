@@ -62,6 +62,7 @@ def userpage(username):
 
 
 
+
 #seminar 20 nov
 
 @app.route('/search')
@@ -93,3 +94,43 @@ def search1():
     return render_template('page1.html', users=users)
 
 app.run()
+
+
+#4th December
+
+@app.route('/add_user', methods=['GET', 'POST'])
+def add_user():
+    @app.route('/add_user', methods=['GET', 'POST'])
+    def add_user():
+        if request.method == 'POST':
+            # add new user data
+            user = {}
+            user['login'] = request.form.get('login')
+            user['name'] = request.form.get('name')
+            user['course'] = request.form.get('course')
+            user['workplace'] = request.form.get('workplace')
+            user['photo'] = request.form.get('photo')
+
+            # save to database
+            conn = sqlite3.connect('app.db')
+            c = conn.cursor()
+            c.execute("INSERT INTO users "
+                      "(login, name, workplace, course, photo) "
+                      "VALUES "
+                      "('{login}','{name}','{workplace}','{course}','{photo}')"
+                      "".format(**user))
+            conn.commit()
+            conn.close()
+            # redirect to user page
+            return redirect('/user/%s/' % user['login'])
+
+        return render_template("add_user.html")
+
+    @app.route('/search')
+    def search_for_person():
+        q = request.args.get('query')
+        users = db.get_users_by_name(q)
+        return render_template('search_results.html', q=q, users=users)
+
+    app.run()
+
