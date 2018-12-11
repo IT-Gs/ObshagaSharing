@@ -10,14 +10,14 @@
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <label for="validationServer01">First name</label>
-          <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
+          <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name"  required>
           <div class="valid-feedback">
             Looks good!
           </div>
         </div>
         <div class="col-md-4 mb-3">
           <label for="validationServer02">Last name</label>
-          <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required>
+          <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name"  required>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -28,8 +28,8 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroupPrepend3">@</span>
             </div>
-            <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
-            <div class="invalid-feedback">
+            <input type="text" class="form-control is-valid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
+            <div class="valid-feedback">
               Please choose a username.
             </div>
           </div>
@@ -37,39 +37,44 @@
       </div>
       <div class="form-row">
         <div class="col-md-6 mb-3">
-          <label for="validationServer03">Building</label>
-          <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="Building" required>
-          <div class="invalid-feedback">
-            Please provide a valid building.
-          </div>
-        </div>
+        <label for="exampleFormControlSelect2">Choose yor Obshaga Address:</label>
+        <select multiple class="form-control" id="exampleFormControlSelect2">
+          <option>Zaporozhskaya,21/A</option>
+          <option>Vitebskaya,14</option>
+          <option>Basseennaya,8</option>
+          <option>Krupskoy,3/B</option>
+          <option>Shevchenko,21</option>
+          <option>Lensoveta,29</option>
+          <option>Serpukhovskaya,12</option>
+        </select>
+      </div>
         <div class="col-md-3 mb-3">
           <label for="validationServer04">Room</label>
-          <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="Room" required>
-          <div class="invalid-feedback">
+          <input type="text" class="form-control is-valid" id="validationServer04" placeholder="Room" required>
+          <div class="valid-feedback">
             Please provide a valid room.
           </div>
         </div>
         <div class="col-md-3 mb-3">
           <label for="validationServer05">Password</label>
-          <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Password" required>
-          <div class="invalid-feedback">
+          <input type="text" class="form-control is-valid" id="validationServer05" placeholder="Password" required>
+          <div class="valid-feedback">
             Please provide a valid password (use letters and numbers).
           </div>
         </div>
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+          <input class="form-check-input is-valid" type="checkbox" value="" id="invalidCheck3" required>
           <label class="form-check-label" for="invalidCheck3">
             Agree to terms and conditions
           </label>
-          <div class="invalid-feedback">
+          <div class="valid-feedback">
             You must agree before submitting.
           </div>
         </div>
       </div>
-      <button class="btn btn-primary" type="submit">Submit form</button>
+       <a class="btn btn-primary btn-lg" href="/search_page" role="button">Submit form</a>
     </form>
 </body>
 </html>

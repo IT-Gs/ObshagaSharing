@@ -6,43 +6,45 @@ import db
 import db2
 app = flask.Flask(__name__)
 
-import sqlite3
-conn = sqlite3.connect('app.db')
 
 
 @app.route("/")
 def enter():
-  return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/registraion')
 def registration():
-  return render_template('registr.html')
+    return render_template('registr.html')
 
 @app.route('/sign_in')
 def sign_in():
-  return render_template('sign in.html')
+    return render_template('sign in.html')
 
 @app.route('/search_page')
 def search():
-  return render_template('mainpage.html')
+    return render_template('mainpage.html')
 
-@app.route('/helping')
+@app.route('/help')
 def helping():
-  return render_template('help.html')
+    return render_template('help.html')
 
 @app.route('/request/<requestname>')
 def show_user_request(requestname):
-  requestname= db.get_request(requestname)
-  return render_template('show_user_request.html', requestname=requestname)
+    requestname= db.get_request(requestname)
+    return render_template('show_user_request.html', requestname=requestname)
 
-@app.route('/add_request')
+@app.route('/addrequest', methods=['GET', 'POST'])
 def add_request():
-  return render_template('addrequest.html')
+    import sqlite3
+    conn = sqlite3.connect('app.db')
+
+    conn.close()
+    return render_template('addrequest.html')
 
 @app.route('/user/<username>')
 def userpage(username):
-  username = db2.get_user(username),
-  return render_template('userpage.html', username = username)
+    username = db2.get_user(username),
+    return render_template('userpage.html', username = username)
 
 
 
