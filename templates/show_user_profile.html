@@ -6,9 +6,9 @@
     <title>Our application</title>
 </head>
 <body>
-    {% if request %}
-        <hl>Your request {{request.name}}!</hl>
+    {% if user %}
+        <hl>Hello, {{user.name}}!</hl>
     {% else %}
-        <div class = "alert alert-warning">Request not found!</div>
+        <div class = "alert alert-warning">User not found!</div>
 </body>
 </html>
