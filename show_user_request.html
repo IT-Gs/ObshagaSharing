@@ -6,9 +6,13 @@
     <title>Our application</title>
 </head>
 <body>
+<div class="container" style="background:#B0E0E6; width:1100px; height:560px">
+    <div style="position:relative; left:320px; top:120px">
     {% if request %}
         <hl>Your request {{request.name}}!</hl>
     {% else %}
-        <div class = "alert alert-warning">Request not found!</div>
+        <div class = "alert alert-warning" style="width:600px; position:relative; top:60px; right:60px"> Request not found!</div>
+    </div>
+</div>
 </body>
 </html>
