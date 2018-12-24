@@ -86,64 +86,82 @@ def sign_in():
 def search():
 
 
-    return render_template('mainpage.html')
+    q = request.args.get('query')
+
+    conn = sqlite3.connect('app.db_r')
+    conn.row_factory = dict_factory
+    c = conn.cursor()
+
+    # Handler logic here
+    c.execute("SELECT * FROM requests WHERE name LIKE '%{q}%' OR benefits LIKE '%{q}%'"
+              "".format(q=q))
+    requests = list(c.fetchall())
+
+    # Close connection
+    conn.close()
+
+    return render_template('mainpage.html', q=q, requests=requests)
+
 
 
 @app.route('/help')
 def helping():
     return render_template('help.html')
 
-@app.route('/request/<requestname>')
-def show_user_request(requestname):
-    requestname= db_u.get_request(requestname)
-    return render_template('show_user_request.html', requestname=requestname)
 
 @app.route('/addrequest', methods=['GET', 'POST'])
 def add_request():
-    import sqlite3
-    conn = sqlite3.connect('app.db')
 
-    conn.close()
-    return render_template('addrequest.html')
+    request_created = False
+    error_message = ""
+
+    if request.method == 'POST':
+        # add new request data
+        request = {}
+        request['name'] = request.form.get('name')
+        request['condition'] = request.form.get('condition')
+        request['benefits'] = request.form.get('benefits')
+        request['ObshagaAddress'] = request.form.get('ObshagaAddress')
+        request['time'] = request.form.get('time')
+
+        # save to database
+        conn = sqlite3.connect('app.db_r')
+        c = conn.cursor()
+
+        c.execute("SELECT * FROM requests where name='%s'" % request['name'])
+        if c.fetchone():
+            # request with this login is already in my database
+            error_message = "request_exists"
+        else:
+            c.execute("INSERT INTO requests "
+                      "(name, condition, benefits, ObshagaAddress, time) "
+                      "VALUES "
+                      "('{name}','{condition}','{benefits}','{ObshagaAddress}','{time}')"
+                      "".format(**request))
+            conn.commit()
+            request_created = True
+        conn.close()
+
+    return render_template(
+        "addrequest.html",
+        request_created=request_created,
+        error_message=error_message
+    )
 
 @app.route('/user/<username>')
 def userpage(username):
-    username = db_u.get_user(username),
-    return render_template('userpage.html', username = username)
-
-
-
-
-
-
-#seminar 20 nov
-
-@app.route('/search1')
-def search_for_person():
-    conn = sqlite3.connect('app.db')
+    conn = sqlite3.connect('app.db_u')
+    conn.row_factory = dict_factory
     c = conn.cursor()
 
-    q = flask.request.args.get('query')
+    # Handler logic here
+    c.execute("SELECT * FROM users WHERE username='%s'" % username)
+    user_data = c.fetchone()
 
-    requests = db_u.get_requests_by_name(q)
+    # Close connection
+    conn.close()
+    return render_template("userpage.html", user=user_data)
 
-    c.execute("SELECT * FROM request WHERE name LIKE '{}'".format(q))
-    users = list(c.fetchall())
 
-    c.close()
-    return render_template('search_results.html', q=q, requests=requests)
-
-@app.route('/search_page1')
-def search1():
-    conn = sqlite3.connect('app.db')
-    c = conn.cursor()
-
-    q = ""
-
-    c.execute("SELECT * FROM staff WHERE name LIKE '%s'" % q)
-    users = list(c.fetchall())
-
-    c.close()
-    return render_template('page1.html', users=users)
 
 app.run()
