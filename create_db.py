@@ -1,186 +1,112 @@
+# Import sqlite3 module (in standart library - do not need to install)
 import sqlite3
 
-conn = sqlite3.connect('app.db')
 
+# Connect ot Database - in local file app.db
+conn = sqlite3.connect('app_u.db')
+# Create a cursor - a
 c = conn.cursor()
 
 c.execute('''
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    login TEXT,
-    name TEXT,
-    course TEXT,
-    workplace TEXT,
-    photo TEXT
+    Firstname TEXT,
+    Lastname TEXT,
+    Username TEXT,
+    ObshagaAdress TEXT,
+    Room TEXT,
+    Password TEXT
 
 )
 ''')
 
 conn.commit()
 
+# Adding some data (feel free to use you own data)
 c.execute('''
-    INSERT INTO users (name, course, workplace)
-    VALUES ("Paul Okopnyi", "4", "HSE")
+    INSERT INTO users (Firstname, Lastname, Username, ObshagaAdress, Room, Password)
+    VALUES ("Pavel", "Okop", "PashaOk", "Zaporozhskaya,21/A", "5", "1234567890")
 ''')
+conn.commit()
+
 
 c.execute('''
     ALTER TABLE users
     ADD COLUMN login TEXT
 ''')
-
-
 conn.commit()
+
 
 c.execute('''
     UPDATE users
     SET login = "paul"
-    WHERE name = "Paul Okopnyi"
+    WHERE Lastname = "Okop"
 ''')
-
 conn.commit()
 
-users = [
 
+c.execute('''
+    ALTER TABLE users
+    ADD COLUMN photo TEXT
+''')
+conn.commit()
+
+
+
+# Our base data
+users = [
     {
-         'login': 'paul',
-         'name': 'Pavel Okdvd',
-         'course': '5d course',
-         'workplace': 'HSE'
-    },
-    {
-        'login': 'vasya',
-        'name': 'Vasiliy Ok',
-        'course': '2sd course',
-        'workplace': 'HSE'
-    },
-    {
-        'login': 'dasha',
-        'name': 'Daria Ok',
-        'course': '3d course',
-        'workplace': 'HSE'
-    },
-    {
-        'login': 'anton',
-        'name': 'Anton Ok',
-        'course': '2sd course',
-        'workplace': 'HSE'
-    },
-    {
-        'login': 'masha',
-        'name': 'Maria Okvrfrgre',
-        'course': '2sd course',
-        'workplace': 'HSE'
-    },
-    {
-        'login': 'nika',
-        'name': 'Nika Jefadak',
-        'course': '1st course',
-        'workplace': 'HSE'
+        'login': 'paul',
+        'Firstname': 'Pavel',
+        'Lastname': 'Okop',
+        'Username': 'PashaOk',
+        'ObshagaAddress': 'Zaporozhskaya,21/A',
+        'Room': '5',
+        'Password': '1234567890'
     },
     {
         'login': 'igor',
-        'name': 'igor Ot',
-        'course': '1st course',
-        'workplace': 'HSE'
+        'Firstname': 'Igor',
+        'Lastname': 'Dashkov',
+        'Username': 'IgirDa',
+        'ObshagaAddress': 'Vitebskaya,14',
+        'Room': '23',
+        'Password': '11111111'
     }
 
 ]
 
 
-
+# Adding it in the loop
 for user in users:
     c.execute("INSERT INTO users "
-              "(login, name, course, workplace)"
+              "(login, Firstname, Lastname, Username, ObshagaAddress, Room, Password)"
               "VALUES "
-              "('{login}', '{name}', '{course}', '{workplace}')".format(**user))
+              "('{login}', '{Firstname}', '{Lastname}', '{Username}', '{ObshagaAddress}', '{Room}', '{Password}')".format(**user))
     conn.commit()
 
+# Add second table
 c.execute('''
     CREATE TABLE requests (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         conditions TEXT,
         time DATETIME,
-        benefits TEXT
+        ObshagaAddress TEXT,
+        bonuses TEXT
     )
 ''')
-
 conn.commit()
-
-
-requests = [
-    {
-        'name': 'pan for pancakes',
-        'condition': 'clean, non-stick',
-        'time': '2 weeks',
-        'benefits': '10 pancakes'
-    },
-    {
-        'name': 'hair dryer',
-        'condition': 'three speeds, cold and hot airflow',
-        'time': 'until 25 november',
-        'benefits': '2 sweets milka'
-    },
-    {
-        'name': 'laptop',
-        'condition': '--',
-        'time': '2 weeks',
-        'benefits': '10 pancakes',
-    },
-    {
-        'name': 'nude shoes, heels ',
-        'condition': 'new, 38size',
-        'time': '27 nov',
-        'benefits': '500 rub',
-    },
-    {
-        'name': 'shoe dryer',
-        'condition': 'clean',
-        'time': '1 week',
-        'benefits': 'lays and orange juice',
-    },
-    {
-        'name': 'mirror',
-        'condition': 'around 1 meters, clean',
-        'time': '3 weeks',
-        'benefits': '700rub',
-    },
-    {
-        'name': 'Bakeware',
-        'condition': 'cute',
-        'time': '1 week',
-        'benefits': '5 cakes',
-    },
-    {
-        'name': 'charging on iphone',
-        'condition': '--',
-        'time': 'until 22 nov',
-        'benefits': '100rub and chocolate',
-    },
-    {
-        'name': 'outlet extension',
-        'condition': '--',
-        'time': 'until friday',
-        'benefits': 'chocolate',
-    },
-    {
-        'name': 'fash drive',
-        'condition': 'free 1gb',
-        'time': '1 weeks',
-        'benefits': '200rub',
-    }
-
-
-]
 
 
 c.execute('''
-    INSERT INTO requests (name, conditions, time, benefits)
+    INSERT INTO request (name, conditions, time, ObshagaAddress, bonuses)
     VALUES
-    ("Pan","clean, non-stick", "2 weeks", "10 pancakes" )
+    ("Pan for pancakes","clean, non-stick", "2 weeks", "Vitebskaya,14", "10 pancakes")
 ''')
 conn.commit()
 
+# Many to many connection
 c.execute('''
     CREATE TABLE users_requests (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -188,8 +114,8 @@ c.execute('''
         request_id INTEGER
     )
 ''')
-
 conn.commit()
+
 
 c.execute("INSERT INTO users_requests (user_id, request_id) VALUES (1, 1)")
 conn.commit()
@@ -200,6 +126,6 @@ conn.commit()
 c.execute("SELECT u.* "
           "FROM users_requests ur "
           "JOIN users u ON (u.id=ur.user_id) "
-"WHERE ur.request_id=1")
-
+          "WHERE ur.request_id=1")
 conn.close()
+
