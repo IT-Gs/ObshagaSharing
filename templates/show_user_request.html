@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Our application</title>
 </head>
 <body>
-    {% if request %}
-        <hl>Your request {{request.name}}!</hl>
-    {% else %}
-        <div class = "alert alert-warning">Request not found!</div>
+{% if request %}
+<hl>Your request {{request.name}}!</hl>
+{% else %}
+<div class = "alert alert-warning">Request not found!</div>
 </body>
 </html>

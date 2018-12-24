@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Our application</title>
 </head>
 <body>
@@ -18,63 +18,28 @@
         <form class="form" method="get" action="/search">
             <input type="search" name="query" class="form-control">
             <button type="submit" class="btn btn-primary">Search</button>
-
         </form>
-    </div>
+
+        {% for reguest in requests %}
+            {{request[1]}}
+        {% endfor %}
 
     <a class="btn btn-primary" href="/user/<username>" role="button">Profile</a>
     <a class="btn btn-primary" href="/addrequest" role="button">Create a request</a>
 
-    <div class="card">
-    <div class="card-header">
-        Pan
+    <div class="card text-center">
+      <div class="card-header">
+        Item: {{request.name}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Bonuses - {{request.benefits}} !!!</h5>
+        <p class="card-text">Conditions: {{request.condition}}</p>
+        <p class="card-text">Address - {{request.ObshagaAddress}}</p>
+        <a href="/help" class="btn btn-primary">Help:)</a>
+      </div>
+      <div class="card-footer text-muted">
+        Time: {{request.time}}
+      </div>
     </div>
-        <div class="card-body">
-        <h5 class="card-title">Bonuses - 10 pancakes!</h5>
-        <p class="card-text">No-stick. Until 15.12.18</p>
-        <a href="/help" class="btn btn-primary">Help</a>
-
-    </div>
-
-    <div class="card">
-    <div class="card-header">
-        Hair dryer
-    </div>
-        <div class="card-body">
-        <h5 class="card-title">Bonuses - 2 sweets milka!</h5>
-        <p class="card-text">hree speeds, cold and hot airflow. Until 25 dec</p>
-        <a href="/help" class="btn btn-primary">Help</a>
-    </div>
-
-    <div class="card">
-    <div class="card-header">
-        Hair dryer
-    </div>
-        <div class="card-body">
-        <h5 class="card-title">Bonuses - 2 sweets milka!</h5>
-        <p class="card-text">hree speeds, cold and hot airflow. Until 25 dec</p>
-        <a href="/help" class="btn btn-primary">Help</a>
-    </div>
-
-    <div class="card">
-    <div class="card-header">
-        Hair dryer
-    </div>
-        <div class="card-body">
-        <h5 class="card-title">Bonuses - 2 sweets milka!</h5>
-        <p class="card-text">hree speeds, cold and hot airflow. Until 25 dec</p>
-        <a href="/help" class="btn btn-primary">Help</a>
-    </div>
-
-    <div class="card">
-    <div class="card-header">
-        Hair dryer
-    </div>
-        <div class="card-body">
-        <h5 class="card-title">Bonuses - 2 sweets milka!</h5>
-        <p class="card-text">hree speeds, cold and hot airflow. Until 25 dec</p>
-        <a class="btn btn-primary btn-lg" href="/help" role="button">Help</a>
-    </div>
-</div>
 </body>
 </html>>
