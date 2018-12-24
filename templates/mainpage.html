@@ -9,19 +9,19 @@
 
 
     <div class="starter-template">
-        <h1>Search for requests.</h1>
+        <h1>Search for requests for {{q}}.</h1>
         <p class="lead">Введи интересующую тебя вещь.<br> ;) </p>
     </div>
 
     <div class="container">
+        <br>
+        {% for request in reuests %}
 
         <form class="form" method="get" action="/search">
             <input type="search" name="query" class="form-control">
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
 
-        {% for reguest in requests %}
-            {{request[1]}}
         {% endfor %}
 
     <a class="btn btn-primary" href="/user/<username>" role="button">Profile</a>
